@@ -1,0 +1,37 @@
+# TPx Reporting Card v1.0
+# System: CORA (Cross-lingual Open-Retrieval Answer Generation)
+# Reference: Asai, Yu, Kasai, Hajishirzi (NeurIPS 2021)
+
+system_name: CORA
+paper_reference: asai2021cora
+paper_url: https://proceedings.neurips.cc/paper/2021/hash/3df07fdae1ab273a967aaa1d355b8bb6-Abstract.html
+
+language_config:
+  L_q: [en, ar, bn, fi, ja, ko, ru, te, es, sv, he, th, da, de, fr, it, nl, pl, pt, hu, vi, ms, km, no, tr, zh-CN, zh-HK, zh-TW]
+  L_e: [en, ar, bn, fi, ja, ko, ru, te, es, sv, he, th, id]
+  L_a: same as L_q
+  L_r: same as L_q
+
+tpx:
+  transfer_point: [Retrieval, Generation]
+  translation_strategy: Language-agnostic
+  resource_level: Mixed
+
+domain: Open
+
+metrics:
+  retrieval: Recall@k (R@2kt, R@5kt on XOR-Retrieve)
+  generation: F1, EM, BLEU (XOR-Full, MKQA)
+  faithfulness: not_reported
+  output_language_accuracy: not_reported
+
+notes: |
+  Foundational cross-lingual RAG system. Combines a multilingual dense
+  passage retriever (mDPR) with a multilingual generator (mGEN) over an
+  index built from 13-language Wikipedia. The system iteratively expands the
+  training set via cross-lingual data mining.
+
+  Evaluated on 28 typologically diverse languages, with state-of-the-art
+  results reported on 26. The runtime system does not translate the query
+  before retrieval; cross-language transfer is handled by multilingual
+  retrieval and generation representations.

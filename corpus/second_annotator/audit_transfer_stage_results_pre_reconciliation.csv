@@ -1,0 +1,4 @@
+stage,exact_matches,total,agreement_rate,cohen_kappa,true_negative,false_positive,false_negative,true_positive
+Retrieval,17,20,0.8500,0.5000,2,0,3,15
+Generation,20,20,1.0000,1.0000,4,0,0,16
+Evaluation,16,20,0.8000,0.5294,4,3,1,12

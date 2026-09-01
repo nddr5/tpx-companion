@@ -1,0 +1,5 @@
+field,exact_matches,total,agreement_rate,cohen_kappa
+scope_label,17,20,0.8500,0.7581
+transfer_point,13,20,0.6500,0.5053
+translation_strategy,15,20,0.7500,0.5816
+resource_level,17,20,0.8500,0.7143

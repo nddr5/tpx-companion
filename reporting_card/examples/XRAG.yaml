@@ -1,0 +1,55 @@
+# TPx Reporting Card v1.0
+# System: XRAG (Cross-lingual Retrieval-Augmented Generation benchmark)
+# Reference: Liu, Trenous, Ribeiro, Byrne, Hieber (Findings of EMNLP 2025)
+
+system_name: XRAG
+paper_reference: liu2025xrag
+paper_url: https://aclanthology.org/2025.findings-emnlp.849/
+dataset_url: https://huggingface.co/datasets/AmazonScience/XRAG
+
+language_config:
+  L_q: [ar, de, es, zh] # user query languages (non-English)
+  L_e:
+    [en, ar, de, es, zh] # evidence in English (monolingual setting) or
+    # multiple languages (multilingual setting)
+  L_a: same as L_q
+  L_r: same as L_q
+
+tpx:
+  transfer_point: [Retrieval, Generation, Evaluation]
+  translation_strategy: Language-agnostic
+  resource_level: High
+
+domain: News
+
+metrics:
+  retrieval: relevancy annotations per retrieved document (gold/distractor)
+  generation: LLM-as-judge factual accuracy (panel of 3 judges)
+  faithfulness: LLM-as-judge with relevancy-annotated supporting articles
+  output_language_accuracy: reported as "response language correctness"
+    (one of the two main findings of the paper)
+
+notes: |
+  End-to-end cross-lingual RAG benchmark constructed from recent news
+  articles. Each instance: question + gold answer + 2 supporting articles
+  + 6 distractors. Two settings:
+    (1) Monolingual retrieval: non-English query, English-only evidence.
+    (2) Multilingual retrieval: non-English query, mixed-language evidence.
+
+  Dataset size: 2985 dev + test set. Monolingual split: 584 per language
+  (ar/de/es/zh). Multilingual split: 112/164/333/40 for ar/de/es/zh.
+
+  Strategy is [Language-agnostic] because the evaluated multilingual LLMs
+  directly handle query-evidence language mismatch without a runtime
+  translation module. Human translation used during dataset construction is
+  not itself coded as a system strategy.
+
+  Two key findings reported by the authors:
+    (1) Even strong frontier LLMs (GPT-4o, Claude Sonnet-3.5, Mistral-large,
+        Command-R+, Nova Pro) struggle with response language correctness
+        in the monolingual retrieval setting.
+    (2) Significant gap between human and LLM performance, indicating the
+        benchmark is far from saturated.
+
+  Cited in the survey as the worked reporting-card example (Section 6, Table 6): XRAG is one of the few benchmarks that evaluate
+  retrieval + generation + relevancy together.

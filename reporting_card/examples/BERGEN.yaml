@@ -1,0 +1,39 @@
+# TPx Reporting Card v1.0
+# System: BERGEN (Chirkova et al., multilingual RAG study)
+# Reference: Chirkova, Rau, Dejean, Formal, Clinchant, Nikoulina
+#            (KnowLLM Workshop @ ACL 2024; arXiv:2407.01463)
+
+system_name: BERGEN (Retrieval-Augmented Generation in Multilingual Settings)
+paper_reference: chirkova2024bergen
+paper_url: https://aclanthology.org/2024.knowllm-1.15/
+arxiv: https://arxiv.org/abs/2407.01463
+
+language_config:
+  L_q: [en, ar, zh, fr, fi, de, it, ja, ko, pt, ru, es, th]
+  L_e: [en, ar, zh, fr, fi, de, it, ja, ko, pt, ru, es, th]
+  L_a: same as L_q # answer in query language
+  L_r: same as L_q
+
+tpx:
+  transfer_point: [Retrieval, Generation, Evaluation]
+  translation_strategy: Hybrid
+  resource_level: Mixed
+
+domain: Open
+
+metrics:
+  retrieval: Recall@k (multilingual dense retrievers)
+  generation: F1, character 3-gram recall
+  faithfulness: not_reported
+  output_language_accuracy: explicitly studied as "answer-language control"
+
+notes: |
+  Systematic study of multilingual RAG behavior across a wide range of
+  languages. Not a new system per se, but a controlled empirical analysis
+  of how prompt design, answer-language control, and retrieval setup
+  affect end-to-end multilingual RAG performance.
+
+  Reasons for [Hybrid] code: BERGEN evaluates multilingual retrieval without
+  runtime translation alongside query-translation baselines and translated
+  prompts. Multiple implemented mismatch-handling strategies are therefore
+  part of the reported experimental design.

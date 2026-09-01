@@ -1,0 +1,4 @@
+date,source,query,filters_or_venue,raw_hits,screened,retained,notes
+YYYY-MM-DD,ACL Anthology,cross-lingual RAG,ACL/EMNLP/NAACL/EACL/COLING,,,,
+YYYY-MM-DD,arXiv,multilingual retrieval-augmented generation,cs.CL/cs.IR,,,,
+YYYY-MM-DD,arXiv,cross-lingual open-retrieval question answering,citation tracing,,,,

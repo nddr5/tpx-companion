@@ -1,0 +1,45 @@
+# TPx Reporting Card v1.0
+# System: MEMERAG (Multilingual End-to-end Meta-Evaluation for RAG)
+# Reference: Cruz Blandon, Talur, Charron, Liu, Mansour, Federico
+#            (ACL 2025, Volume 1: Long Papers)
+
+system_name: MEMERAG
+paper_reference: cruzblandon2025memerag
+paper_url: https://aclanthology.org/2025.acl-long.1101/
+
+language_config:
+  L_q: [en, de, es, fr, hi] # 5 evaluation languages
+  L_e: same as L_q # multilingual evidence (in-language Wikipedia)
+  L_a: same as L_q
+  L_r: same as L_q
+
+tpx:
+  transfer_point: [Retrieval, Generation, Evaluation]
+  translation_strategy: N/A
+  resource_level: Mixed
+
+domain: Open
+
+metrics:
+  retrieval: not the primary focus (uses fixed retrieval setup)
+  generation: not the primary focus (system outputs are the input to evaluation)
+  faithfulness: human-annotated faithfulness labels at claim level;
+    LLM-as-judge agreement against human gold
+  output_language_accuracy: not_reported
+
+notes: |
+  Meta-evaluation benchmark: rather than scoring RAG systems directly,
+  MEMERAG measures how reliably automatic evaluators (LLM-as-judge,
+  reference-based metrics) agree with human judgment across languages.
+
+  The survey treats MEMERAG as Adjacent evidence: it evaluates complete
+  multilingual RAG pipelines, but each language configuration is same-language
+  rather than requiring within-instance cross-language transfer.
+
+  Reasons for [N/A] strategy code: the benchmark evaluates systems regardless
+  of their internal translation strategy and does not prescribe a runtime
+  translation mechanism.
+
+  Resource level [Mixed]: Hindi is typically classified as
+  mid/low-resource, the others as high-resource; together they cover
+  the range relevant to multilingual deployment.

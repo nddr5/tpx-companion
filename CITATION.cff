@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use the TPx framework or corpus, please cite this work."
+title: "TPx: A Pipeline-Centric Taxonomy and Corpus for Cross-Lingual RAG"
+abstract: "TPx provides a three-axis taxonomy (Transfer Point, Translation Strategy, Resource Level), a coded evidence base of 116 papers, and reporting infrastructure for cross-lingual retrieval-augmented generation research."
+authors:
+  - given-names: "Nada"
+    family-names: "Doulfoukar"
+    affiliation: "Université du Québec à Rimouski (UQAR), Canada"
+  - given-names: "Mehdi"
+    family-names: "Adda"
+    affiliation: "Université du Québec à Rimouski (UQAR), Canada"
+type: dataset
+version: "1.0.0"
+date-released: "2026-08-31"
+keywords:
+  - cross-lingual RAG
+  - retrieval-augmented generation
+  - multilingual NLP
+  - taxonomy
+  - survey
+license: "CC-BY-4.0"

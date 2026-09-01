@@ -1,0 +1,37 @@
+# TPx Reporting Card v1.0
+# System: AfriQA (Cross-lingual Open-Retrieval QA for African Languages)
+# Reference: Ogundepo, Gwadabe, Rivera, Clark, Ruder, Adelani et al.
+#            (Findings of EMNLP 2023)
+
+system_name: AfriQA
+paper_reference: ogundepo2023afriqa
+paper_url: https://aclanthology.org/2023.findings-emnlp.997/
+
+language_config:
+  L_q: [bem, fon, hau, ibo, kin, swa, twi, wol, yor, zul] # 10 African languages
+  L_e: [en, fr] # English/French Wikipedia
+  L_a: same as L_q
+  L_r: same as L_q
+
+tpx:
+  transfer_point: [Retrieval, Generation]
+  translation_strategy: Hybrid
+  resource_level: Low
+
+domain: Open
+
+metrics:
+  retrieval: Recall@1, Recall@10
+  generation: F1, EM
+  faithfulness: not_reported
+  output_language_accuracy: not_reported
+
+notes: |
+  Cross-lingual open-retrieval QA dataset built specifically for African
+  languages. 12,000+ QA pairs across 10 typologically diverse low-resource
+  African languages, with answers grounded in English or French Wikipedia.
+
+  The benchmark substantively evaluates translation-based and direct
+  multilingual retrieval/generation pipelines. Under the paper-level coding
+  rule, this implemented comparison is [Hybrid], rather than assigning one
+  evaluated baseline as the paper's sole strategy.

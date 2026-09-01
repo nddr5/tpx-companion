@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/tpx/reporting-card-v1.0.schema.json",
+  "title": "TPx Reporting Card v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "system_name",
+    "paper_reference",
+    "paper_url",
+    "language_config",
+    "tpx",
+    "domain",
+    "metrics",
+    "notes"
+  ],
+  "properties": {
+    "system_name": {"type": "string", "minLength": 1},
+    "paper_reference": {"type": "string", "minLength": 1},
+    "paper_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+    "arxiv": {"type": "string", "format": "uri", "pattern": "^https?://"},
+    "dataset_url": {"type": "string", "format": "uri", "pattern": "^https?://"},
+    "language_config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["L_q", "L_e", "L_a", "L_r"],
+      "properties": {
+        "L_q": {"$ref": "#/$defs/languageRole"},
+        "L_e": {"$ref": "#/$defs/languageRole"},
+        "L_a": {"$ref": "#/$defs/languageRole"},
+        "L_r": {"$ref": "#/$defs/languageRole"}
+      }
+    },
+    "tpx": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["transfer_point", "translation_strategy", "resource_level"],
+      "properties": {
+        "transfer_point": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"enum": ["Retrieval", "Generation", "Evaluation"]}
+        },
+        "translation_strategy": {
+          "enum": [
+            "Translate-then-retrieve",
+            "Retrieve-then-translate",
+            "Language-agnostic",
+            "Hybrid",
+            "N/A"
+          ]
+        },
+        "resource_level": {"enum": ["High", "Mixed", "Low", "N/A"]}
+      }
+    },
+    "domain": {"type": "string", "minLength": 1},
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "retrieval",
+        "generation",
+        "faithfulness",
+        "output_language_accuracy"
+      ],
+      "properties": {
+        "retrieval": {"type": "string", "minLength": 1},
+        "generation": {"type": "string", "minLength": 1},
+        "faithfulness": {"type": "string", "minLength": 1},
+        "output_language_accuracy": {"type": "string", "minLength": 1}
+      }
+    },
+    "notes": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "languageCode": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(?:-[A-Za-z0-9]+)?$"
+    },
+    "languageRole": {
+      "oneOf": [
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/languageCode"}
+        },
+        {"enum": ["same as L_q", "same as L_e", "same as L_a", "same as L_r"]}
+      ]
+    }
+  }
+}

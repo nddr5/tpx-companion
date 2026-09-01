@@ -1,0 +1,58 @@
+# TPx Reporting Card v1.0
+# Minimal reporting card for cross-lingual RAG experiments.
+#
+# Reference: TPx reporting-card table in the published survey.
+#
+# To use this template:
+#   1. Copy this file and rename it to <your-system-name>.yaml
+#   2. Fill in each field below
+#   3. Use ISO 639 codes; BCP 47 tags are permitted for regional variants
+#   4. For multi-valued fields, use YAML list syntax: [a, b, c]
+#   5. Use "not_reported" if the paper does not report a given metric
+#
+# See examples/ for filled-in cards (CORA, XRAG, BERGEN, AfriQA, MEMERAG).
+
+system_name: "" # System or benchmark name (e.g., "CORA", "MEMERAG")
+paper_reference: "" # BibTeX key (e.g., "asai2021cora")
+paper_url: "" # DOI, ACL Anthology, arXiv, OpenReview, or publisher URL
+
+# ----------------------------------------------------------------------
+# Language configuration (Rec1 in the survey)
+# Specify the role of each language in the pipeline.
+# ----------------------------------------------------------------------
+language_config:
+  L_q: [] # Query languages (ISO codes)
+  L_e: [] # Evidence languages
+  L_a: [] # Answer languages
+  L_r: [] # Reference languages (for evaluation)
+
+# ----------------------------------------------------------------------
+# TPx coordinates (taxonomy section of the survey)
+# ----------------------------------------------------------------------
+tpx:
+  transfer_point: [] # One or more of: Retrieval, Generation, Evaluation
+  # Runtime mechanism only; offline data translation does not determine this field.
+  translation_strategy: "" # One of: Translate-then-retrieve, Retrieve-then-translate, Language-agnostic, Hybrid, N/A
+  resource_level: "" # One of: High, Mixed, Low, N/A
+
+# ----------------------------------------------------------------------
+# Domain
+# ----------------------------------------------------------------------
+domain: "" # Open, General, Medical, Legal, Cultural, News, Other
+
+# ----------------------------------------------------------------------
+# Metrics reported by the paper
+# Use "not_reported" if the metric is not given.
+# ----------------------------------------------------------------------
+metrics:
+  retrieval: "" # e.g., Recall@10, nDCG@10, MRR
+  generation: "" # e.g., F1, EM, chrF, BERTScore, human_eval
+  faithfulness: "" # e.g., attribution, entailment, LLM-as-judge
+  output_language_accuracy: "" # % of outputs in intended L_a (Rec3 in the survey)
+
+# ----------------------------------------------------------------------
+# Free-form notes
+# ----------------------------------------------------------------------
+notes: |
+  Add any context that does not fit the structured fields above:
+  experimental setup, baselines, caveats, related findings.
